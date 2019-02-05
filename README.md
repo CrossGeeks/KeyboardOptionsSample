@@ -8,4 +8,4 @@ Keyboard options Sample in Xamarin Forms
 </p>
 
 
-Blog post: [Keyboard Options in Xamarin Forms]()
+Blog post: [Keyboard Options in Xamarin Forms](http://www.xamboy.com/2019/02/05/showing-keyboard-options-in-xamarin-forms)

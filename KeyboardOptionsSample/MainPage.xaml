@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:KeyboardOptionsSample" 
+             x:Class="KeyboardOptionsSample.MainPage" 
+             xmlns:controls="clr-namespace:KeyboardOptionsSample;assembly=KeyboardOptionsSample">
+    <controls:KeyboardView VerticalOptions="FillAndExpand"
+                           Padding="0,25,0,0"
+                           x:Name="mainLayout">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+             
+               <Image Source="ic_send"
+                      Margin="0,0,20,0"
+                      HorizontalOptions="EndAndExpand"
+                      HeightRequest="30"
+                      WidthRequest="30"
+                      Grid.Row="0"
+                      Grid.Column="2">
+                     <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={x:Reference editor},
+                                                           Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="Opacity" Value="0.5" />
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Image.Triggers>
+            </Image>
+            
+            <Label Text="To:" 
+                   FontSize="17"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   TextColor="Gray"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Margin="20,0,0,0"/>
+            
+             <Label Text="Rendy Del Rosario"
+                    FontSize="17"
+                    VerticalOptions="Center"
+                    Grid.Column="1"
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="2"/>
+             
+            <controls:ExtendedEditor Placeholder="Enter Message"
+                                     PlaceholderColor="LightGray"
+                                     Grid.Column="0"
+                                     Grid.Row="2" 
+                                     Grid.ColumnSpan="3"
+                                     x:Name="editor" 
+                                     HeightRequest="120"
+                                     Margin="20,0"
+                                     Text=""/>
+                                   
+           <Image HorizontalOptions="Start"
+                  VerticalOptions="Start"
+                  Aspect="AspectFill"
+                  HeightRequest="150"
+                  WidthRequest="150"
+                  x:Name="imageView" 
+                  Grid.Column="0"
+                  Grid.Row="3" 
+                  Grid.ColumnSpan="2"
+                  Margin="20,0"/>
+                
+        
+        <!--Layout placed over the keyboard-->
+            <StackLayout x:Name="layout" 
+                               Grid.Column="0"
+                               Grid.Row="4" 
+                               Grid.ColumnSpan="3"
+                               Spacing="0" 
+                               Padding="0"
+                               BackgroundColor="White">
+            
+                       <BoxView Color="LightGray" 
+                                HorizontalOptions="FillAndExpand" 
+                                HeightRequest="1"/>
+                
+                       <StackLayout Orientation="Horizontal" 
+                                    MinimumHeightRequest="35"
+                                    Margin="0,10"  
+                                    BackgroundColor="White"
+                                    VerticalOptions="EndAndExpand">
+                         <Image WidthRequest="25" 
+                                Margin="20,0,0,0"
+                                Source="ic_gallery">
+                               <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="OnAttachMedia"/>
+                             </Image.GestureRecognizers>
+                         </Image>
+                         <Label Text="Attach Media"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="Gray">
+                               <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                             Tapped="OnAttachMedia"/>
+                            </Label.GestureRecognizers>
+                         </Label>
+                         
+                          <Image WidthRequest="25" 
+                                 HorizontalOptions="End"
+                                 Source="ic_camera">
+                               <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="OnTakePhoto" />
+                             </Image.GestureRecognizers>
+                         </Image>
+                         <Label Text="Take Photo"
+                                Margin="0,0,20,0"
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="Gray">
+                              <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                            Tapped="OnTakePhoto" />
+                             </Label.GestureRecognizers>
+                         </Label>
+                </StackLayout>
+           </StackLayout>
+          </controls:KeyboardView>
+</ContentPage>
